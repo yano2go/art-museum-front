@@ -69,7 +69,7 @@ function App(props) {
     query.categories.length > 0 ?
 		updateQuery({
 			...query,
-      searchURL: `${query.baseURL}q=${query.categories}&totalrecordsperquery=30&${query.apiKey}`}) : 
+      searchURL: `${query.baseURL}q=${query.categories}&${query.apiKey}`}) : 
     
       updateQuery({
         ...query,
@@ -84,6 +84,31 @@ function App(props) {
 		updateQuery({ ...query, ...{ [event.target.id]: event.target.value } });
 	};
 
+  const handleAddToCollection = async (event) => {
+    console.log(event.target.id)
+    console.log(event.target.title)
+    console.log(typeof event.target.culture); 
+    console.log(typeof 52); 
+    console.log(Object.keys(event.target))
+    
+    const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
+    
+    const dbresponse = await axios.post('http://localhost:3001/api', {
+      culture: harvardResponse.data.culture,
+      classification: harvardResponse.data.classification,
+      description: harvardResponse.data.description
+      // harvardResponse.data 
+    })
+
+    // const response = await axios.post('http://localhost:3001/api', {
+    //   id: event.target.id,
+    //   title: event.target.title,
+    //   culture: 'test' 
+    // })
+
+    // await console.log(event.target.culture);
+    // await console.log(event.target.objectid)
+  }
 
   // const showReturnedObjects = 
   // allReturnedObjects.records.map((object,i)=>{
@@ -147,7 +172,13 @@ function App(props) {
           <div key={i}> 
           <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
           <h2>{object.title}</h2>
-
+          <p>{object.description}</p>
+          <button onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</button>
+          
+          {/* <form onSubmit={handleAddToCollection}>
+            <input type='submit' value='Add to Collection'></input>
+          </form> */}
+          {/* {console.log(object.culture)} */}
           </div>
         )})
 
