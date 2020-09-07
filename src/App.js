@@ -17,13 +17,15 @@ function App(props) {
 
   const [allReturnedObjects, setAllReturnedObjects] = useState({})
 
+  
   const [query, updateQuery] = useState({
     baseURL: 'https://api.harvardartmuseums.org/object?',
     apiKey: 'apikey=' + APIKEY,
     categories: '',
     searchURL: ''
   })
-
+  
+  const [myObjects, setMyObjects] = useState([])
 
   useEffect(() => {
 		query.searchURL.length > 0 &&
@@ -44,32 +46,39 @@ function App(props) {
 				}
 			})();
   }, [allReturnedObjects, query]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get("http://localhost:3001/api/");
+      setMyObjects(response.data);
+    }
+    fetchData();
+  }, [myObjects]);
   
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(typeof document.getElementById('cultureSelect').value)
+    // console.log(typeof document.getElementById('cultureSelect').value)
+    
+
+    
+    const returnedClassificationValue = 'classification=' + document.getElementById('classificationSelect').value + '&'
+
     const returnedCultureValue = 
       document.getElementById('cultureSelect').value === '' ?
-      'culture=any&' : 
-    'culture=' + document.getElementById('cultureSelect').value + '&';
-
-    // const returnedCultureValue = 
-    //   (document.getElementById('cultureSelect').value) ?
-    //   'hello' : 
-    // 'culture=' + document.getElementById('cultureSelect').value + '&';
-    const returnedClassificationValue = 'classification=' + document.getElementById('classificationSelect').value
-    // const returnedCultureValue = 'culture=' + document.getElementById('cultureSelect').value + '&';
-    console.log(returnedCultureValue)
-    // query.categories= 'culture=' + document.getElementById('cultureSelect').value
-    // query.categories= 'technique=' + document.getElementById('techniqueSelect').value
+      'culture=any' : 
+    'culture=' + document.getElementById('cultureSelect').value;
+    
     // console.log(returnedCultureValue)
+    
     updateQuery({
-      ...query, ...query.categories = returnedCultureValue + returnedClassificationValue
+      ...query, ...query.categories = returnedClassificationValue + returnedCultureValue
     })
     query.categories.length > 0 ?
 		updateQuery({
 			...query,
-      searchURL: `${query.baseURL}q=${query.categories}&${query.apiKey}`}) : 
+      // searchURL: `${query.baseURL}q=${query.categories}&${query.apiKey}`}) : 
+      //without q=
+      searchURL: `${query.baseURL}${query.categories}&${query.apiKey}`}) :
     
       updateQuery({
         ...query,
@@ -85,29 +94,22 @@ function App(props) {
 	};
 
   const handleAddToCollection = async (event) => {
-    console.log(event.target.id)
-    console.log(event.target.title)
-    console.log(typeof event.target.culture); 
-    console.log(typeof 52); 
-    console.log(Object.keys(event.target))
+    // console.log(event.target.id)
+    // console.log(event.target.title)
+    // console.log(typeof event.target.culture); 
+    // console.log(typeof 52); 
+    // console.log(Object.keys(event.target))
     
     const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
     
     const dbresponse = await axios.post('http://localhost:3001/api', {
       culture: harvardResponse.data.culture,
       classification: harvardResponse.data.classification,
-      description: harvardResponse.data.description
+      description: harvardResponse.data.description,
+      title: harvardResponse.data.title,
+      img: harvardResponse.data.primaryimageurl
       // harvardResponse.data 
     })
-
-    // const response = await axios.post('http://localhost:3001/api', {
-    //   id: event.target.id,
-    //   title: event.target.title,
-    //   culture: 'test' 
-    // })
-
-    // await console.log(event.target.culture);
-    // await console.log(event.target.objectid)
   }
 
   // const showReturnedObjects = 
@@ -132,6 +134,15 @@ function App(props) {
     <div>
       <form onSubmit={handleSubmit}>
 
+      <label htmlFor='classification-select'>Select Classification</label>
+        <select id='classificationSelect' name='classification' value={undefined} onChange={handleChange}>
+          <option value=''>Select Classification...</option>
+          <option value='Photographs'>Photographs</option>
+          <option value='Vessels'>Vessels</option>
+          <option value='Coins'>Coins</option>
+          
+        </select>
+
       <label htmlFor='culture-select'>Select Culture</label>
         <select id='cultureSelect' name='culture' value={undefined} onChange={handleChange}>
           <option value=''>Select Culture...</option>
@@ -142,14 +153,7 @@ function App(props) {
           
         </select>
 
-        <label htmlFor='classification-select'>Select Classification</label>
-        <select id='classificationSelect' name='classification' value={undefined} onChange={handleChange}>
-          <option value=''>Select Classification...</option>
-          <option value='Photographs'>Photographs</option>
-          <option value='Vessels'>Vessels</option>
-          <option value='Coins'>Coins</option>
-          
-        </select>
+        
         
       {/* <label htmlFor="title"> // ORIGINAL TYPE-IN STYLE
 					Title:
@@ -164,7 +168,7 @@ function App(props) {
 				<input type="submit" value="Search For Objects" />
         
       </form>
-      {/* {console.log(allReturnedObjects.info)} */}
+      
       {Object.keys(allReturnedObjects).length > 0 &&
       // {showReturnedObjects}
       allReturnedObjects.records.map((object,i)=>{
@@ -172,17 +176,29 @@ function App(props) {
           <div key={i}> 
           <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
           <h2>{object.title}</h2>
+          <h2>{object.culture}</h2>
           <p>{object.description}</p>
           <button onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</button>
           
-          {/* <form onSubmit={handleAddToCollection}>
-            <input type='submit' value='Add to Collection'></input>
-          </form> */}
-          {/* {console.log(object.culture)} */}
           </div>
         )})
 
       }
+      <hr />
+      
+      <div className='my-collection'>
+        {myObjects.map((myObject, i)=>{
+          return (
+            <div key={myObject._id}>
+              <h2>{myObject.title}</h2>
+              <img src={myObject.img} style={{maxWidth: '75px'}} alt={myObject.title}/>
+              <h2>{myObject.culture}</h2>
+          <p style={{fontSize: '15px'}}>{myObject.description}</p>
+            </div>  
+          )
+        })}
+
+      </div>
 
     </div>
   )
