@@ -1,11 +1,11 @@
 import React from "react"
 
 
-export default function Show (props){
+export default function Show(props){
      return(
           <div>
-               {/* <img src={props.myObject}/> */}
-               <h1>test</h1>
+               {/* <img src={props.myPiece} alt={props.myPiece.title}/> */}
+               <h1>{props.myShownPiece.title}</h1>
           </div>
      )
 } 
