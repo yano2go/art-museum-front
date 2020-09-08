@@ -5,6 +5,7 @@ import axios from 'axios'
 import MyCollection from './components/MyCollection';
 import Button from 'react-bootstrap/Button'
 import Navbar from './components/Navbar';
+import Card from 'react-bootstrap/Card';
 
 
 // require('dotenv').config()
@@ -188,14 +189,15 @@ function App(props) {
       allReturnedObjects.records.map((object,i)=>{
         return(
           
-          <div key={i}> 
-          <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
-          <h2>{object.title}</h2>
-          <h2>{object.culture}</h2>
-          <p>{object.description}</p>
-          <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
-          
-          </div>
+          <Card style={{maxWidth: '18rem'}} key={i}> 
+            <Card.Img variant="top" src={object.primaryimageurl} alt='art piece' />
+          <Card.Body>
+            <Card.Title>{object.title}</Card.Title>
+            <Card.Text>{object.culture}</Card.Text>
+            <Card.Text>{object.description}</Card.Text>
+            <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} >Add to Collection</Button>
+          </Card.Body>
+          </Card>
         )})
 
       }
