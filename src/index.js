@@ -11,9 +11,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(
   
   <React.StrictMode>
-    {/* <Router> */}
+    <Router>
     <App />
-    {/* </Router> */}
+    </Router>
   </React.StrictMode>,
   
   document.getElementById('root')
