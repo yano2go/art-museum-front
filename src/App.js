@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios'
 import MyCollection from './components/MyCollection';
+import Button from 'react-bootstrap/Button'
+import Navbar from './components/Navbar';
+
+
 // require('dotenv').config()
 // import 'dotenv'
 
@@ -133,7 +137,13 @@ function App(props) {
 
 
   return (
-    <div>
+    <div className="d-flex">
+
+      <div className="container ">
+      <Navbar />
+      </div>
+
+      <div>
       <form onSubmit={handleSubmit}>
 
       <label htmlFor='classification-select'>Select Classification</label>
@@ -167,20 +177,23 @@ function App(props) {
 					/>
 				</label> */}
 
-				<input type="submit" value="Search For Objects" />
+				<input variant="primary" type="submit" value="Search For Objects" />
         
       </form>
+
       
       {Object.keys(allReturnedObjects).length > 0 &&
       // {showReturnedObjects}
+
       allReturnedObjects.records.map((object,i)=>{
         return(
+          
           <div key={i}> 
           <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
           <h2>{object.title}</h2>
           <h2>{object.culture}</h2>
           <p>{object.description}</p>
-          <button onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</button>
+          <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
           
           </div>
         )})
@@ -203,6 +216,8 @@ function App(props) {
 
       {/* </div> */}
 
+    </div>
+    
     </div>
   )
 }
