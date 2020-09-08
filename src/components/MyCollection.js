@@ -42,6 +42,30 @@ export default function MyCollection(props){
       }
     }
 
+    const handleThoughtsChange = event => {
+      setMyShownPiece({...myShownPiece, [event.target.name]: [event.target.value]})
+      console.log(myShownPiece)
+    }
+
+    const handleThoughtsSubmit = async event => {
+      event.preventDefault()
+      
+      const response = await axios.put(`http://localhost:3001/api/${event.target.id}`, {myShownPiece})
+      await console.log('from a.pt', response.data)
+
+      // // // await setMyShownPiece({personalThoughts: response.data})
+      // const response = await fetch(`http://localhost:3001/api/${event.target.id}`, {
+      //   // const response = await fetch(`http://localhost:3001/api/` + props.match.params.id, {
+      //   method: 'PUT',
+      //   body: JSON.stringify(myShownPiece),
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	}
+      // })
+      // const data = await response.json()
+      // await setMyShownPiece(data)
+    }
+
     return(
 
       <div>
@@ -60,7 +84,7 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece}/>
+        <Show myShownPiece={myShownPiece} handleThoughtsChange={handleThoughtsChange} handleThoughtsSubmit={handleThoughtsSubmit}/>
 
       </div>
       {/* <Show myObject={myObject}/> */}
