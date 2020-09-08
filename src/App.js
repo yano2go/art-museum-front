@@ -6,6 +6,7 @@ import MyCollection from './components/MyCollection';
 import Button from 'react-bootstrap/Button'
 import Navbar from './components/Navbar';
 
+
 // require('dotenv').config()
 // import 'dotenv'
 
@@ -136,8 +137,13 @@ function App(props) {
 
 
   return (
-    <div>
+    <div className="d-flex">
+
+      <div className="container ">
       <Navbar />
+      </div>
+
+      <div>
       <form onSubmit={handleSubmit}>
 
       <label htmlFor='classification-select'>Select Classification</label>
@@ -210,6 +216,8 @@ function App(props) {
 
       {/* </div> */}
 
+    </div>
+    
     </div>
   )
 }
