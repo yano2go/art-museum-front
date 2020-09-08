@@ -7,7 +7,7 @@ import {Link} from "react-router-dom"
 
 export default function MyCollection(props){
 
-  const [myPiece, setMyPiece] = useState({})
+  // const [myPiece, setMyPiece] = useState({})
   const [myShownPiece, setMyShownPiece] = useState({})
 
   // useEffect(()=>{
