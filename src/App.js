@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import MyCollection from './components/MyCollection';
 // require('dotenv').config()
 // import 'dotenv'
 
@@ -107,7 +108,8 @@ function App(props) {
       classification: harvardResponse.data.classification,
       description: harvardResponse.data.description,
       title: harvardResponse.data.title,
-      img: harvardResponse.data.primaryimageurl
+      img: harvardResponse.data.primaryimageurl,
+      personalThoughts: ''
       // harvardResponse.data 
     })
   }
@@ -186,7 +188,7 @@ function App(props) {
       }
       <hr />
       
-      <div className='my-collection'>
+      {/* <div className='my-collection'>
         {myObjects.map((myObject, i)=>{
           return (
             <div key={myObject._id}>
@@ -196,9 +198,10 @@ function App(props) {
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
             </div>  
           )
-        })}
+        })} */}
+        <MyCollection myObjects={myObjects} />
 
-      </div>
+      {/* </div> */}
 
     </div>
   )
