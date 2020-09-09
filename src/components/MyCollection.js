@@ -99,10 +99,10 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece} /* handleThoughtsChange={handleThoughtsChange} */handleThoughtsSubmit={handleThoughtsSubmit}/>
+        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit}/>
 
       </div>
-      {/* <Show myObject={myObject}/> */}
+      
         </div>
       
     )

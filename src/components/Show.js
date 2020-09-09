@@ -11,7 +11,7 @@ export default function Show(props){
                <img style={{maxWidth: '200px'}} src={props.myShownPiece.img} alt={props.myShownPiece.title}/>
                <p>{props.myShownPiece.personalThoughts}</p>
                {Object.keys(props.myShownPiece).length > 0 && <form onSubmit={props.handleThoughtsSubmit} id={props.myShownPiece._id} value={props.personalThoughts}>
-                    <input type='textarea' name='personalThoughts' id='thoughtForm' /* onChange={props.handleThoughtsChange} */ placeholder='Add your personal thoughts here' />
+                    <input type='textarea' name='personalThoughts' id='thoughtForm' placeholder='Add your personal thoughts here' />
                     <input type='submit' value='Update your Thoughts'/>
 
                </form>}
