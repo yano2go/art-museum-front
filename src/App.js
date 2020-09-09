@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 import MyCollection from './components/MyCollection';
@@ -8,22 +7,11 @@ import Navbar from './components/Navbar';
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-
-// require('dotenv').config()
-// import 'dotenv'
-
-
-
-
-
 function App(props) {
 
   const APIKEY = process.env.REACT_APP_APIKEY
 
-  // const searchQuery = "culture=Greek&medium=Terracotta&page=32"
-
   const [allReturnedObjects, setAllReturnedObjects] = useState({})
-
   
   const [query, updateQuery] = useState({
     baseURL: 'https://api.harvardartmuseums.org/object?',
@@ -38,15 +26,9 @@ function App(props) {
 		query.searchURL.length > 0 &&
 			(async () => {
 				try {
-
-					// const response = await fetch(query.searchURL);
-          // const data = await response.json(); 
-          // setAllReturnedObjects({ ...allReturnedObjects, ...data });
           console.log(query.searchURL)
           const response = await axios.get(query.searchURL)
           setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
-          
-
 					updateQuery({ ...query, searchURL: '', categories: '' });
 				} catch (error) {
 					console.error(error);
@@ -64,18 +46,13 @@ function App(props) {
   
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log(typeof document.getElementById('cultureSelect').value)
-    
 
-    
     const returnedClassificationValue = 'classification=' + document.getElementById('classificationSelect').value + '&'
 
     const returnedCultureValue = 
       document.getElementById('cultureSelect').value === '' ?
       'culture=any' : 
     'culture=' + document.getElementById('cultureSelect').value;
-    
-    // console.log(returnedCultureValue)
     
     updateQuery({
       ...query, ...query.categories = returnedClassificationValue + returnedCultureValue
@@ -101,12 +78,7 @@ function App(props) {
 	};
 
   const handleAddToCollection = async (event) => {
-    // console.log(event.target.id)
-    // console.log(event.target.title)
-    // console.log(typeof event.target.culture); 
-    // console.log(typeof 52); 
-    // console.log(Object.keys(event.target))
-    
+
     const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
     
     const dbresponse = await axios.post('https://harvard-art-museum-backend.herokuapp.com/api', {
@@ -116,27 +88,8 @@ function App(props) {
       title: harvardResponse.data.title,
       img: harvardResponse.data.primaryimageurl,
       personalThoughts: ''
-      // harvardResponse.data 
     })
   }
-
-  // const showReturnedObjects = 
-  // allReturnedObjects.records.map((object,i)=>{
-  //   return(
-  //     <div key={i}> 
-  //     <img src={object.images.baseimageurl} alt='art piece'></img>
-  //     </div>
-  //   )})
-
-  //   return (
-
-  //   //   // <div className="App">
-  //   //   //   {Object.keys(allReturnedObjects.records).length>0 &&{showReturnedObjects}}
-  //   //   // </div>
-  //   // );
-  // //}
-  //   )
-
 
   return (
     <div className="d-flex">
@@ -163,13 +116,8 @@ function App(props) {
           <option value='French'>French</option>
           <option value='Greek'>Greek</option>
           <option value='Italian'>Italian</option>
-          <option value='Chinese'>Chinese</option>
-          
+          <option value='Chinese'>Chinese</option> 
         </select>
-
-        
-        
-     
 
 				<input variant="primary" type="submit" value="Search For Objects" />
         
@@ -198,10 +146,7 @@ function App(props) {
       </CardColumns>
       <hr />
       
-      
         <MyCollection myObjects={myObjects} />
-
-      
 
     </div>
     
