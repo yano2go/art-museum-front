@@ -169,15 +169,7 @@ function App(props) {
 
         
         
-      {/* <label htmlFor="title"> // ORIGINAL TYPE-IN STYLE
-					Title:
-					<input
-						id="categories"
-						type="text"
-						value={query.categories}
-						onChange={handleChange}
-					/>
-				</label> */}
+     
 
 				<input variant="primary" type="submit" value="Search For Objects" />
         
@@ -185,7 +177,7 @@ function App(props) {
 
       <CardColumns>
       {Object.keys(allReturnedObjects).length > 0 &&
-      // {showReturnedObjects}
+      
 
       allReturnedObjects.records.map((object,i)=>{
         return(
@@ -195,7 +187,7 @@ function App(props) {
           <Card.Body>
           <Card.Title>{object.title}</Card.Title>
           <Card.Text>{object.culture}</Card.Text>
-          {/* <Card.Text>{object.description}</Card.Text> */}
+          
           <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
           </Card.Body>
           </Card>
@@ -206,20 +198,10 @@ function App(props) {
       </CardColumns>
       <hr />
       
-      {/* <div className='my-collection'>
-        {myObjects.map((myObject, i)=>{
-          return (
-            <div key={myObject._id}>
-              <h2>{myObject.title}</h2>
-              <img src={myObject.img} style={{maxWidth: '75px'}} alt={myObject.title}/>
-              <h2>{myObject.culture}</h2>
-          <p style={{fontSize: '15px'}}>{myObject.description}</p>
-            </div>  
-          )
-        })} */}
+      
         <MyCollection myObjects={myObjects} />
 
-      {/* </div> */}
+      
 
     </div>
     
