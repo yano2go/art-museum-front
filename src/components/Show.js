@@ -11,10 +11,10 @@ export default function Show(props){
                <img style={{maxWidth: '200px'}} src={props.myShownPiece.img} alt={props.myShownPiece.title}/>
                <h2>{props.myShownPiece.culture}</h2>
                <p>{props.myShownPiece.personalThoughts}</p>
-               {Object.keys(props.myShownPiece).length > 0 &&
-               <div> 
+               {Object.keys(props.myShownPiece).length > 0 && 
+               <div>
                <form onSubmit={props.handleThoughtsSubmit} id={props.myShownPiece._id} value={props.personalThoughts}>
-                    <input type='textarea' name='personalThoughts' id='thoughtForm' /* onChange={props.handleThoughtsChange} */ placeholder='Add your personal thoughts here' />
+                    <input type='textarea' name='personalThoughts' id='thoughtForm' placeholder='Add your personal thoughts here' />
                     <input type='submit' value='Update your Thoughts'/>
 
                </form>
@@ -22,8 +22,9 @@ export default function Show(props){
                     <input type='submit' value='DELETE ITEM' />
                </form>
                </div>
-                    
-          }
+               }
           </div>
+                    
+          
      )
 } 
