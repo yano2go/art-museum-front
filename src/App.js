@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Navbar from './components/Navbar';
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
+import ComingSoon from './img/imageComingSoon.png'
 
 function App(props) {
 
@@ -102,7 +103,7 @@ function App(props) {
       <div className="">
 
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
-      
+
       <CardColumns>
       {Object.keys(allReturnedObjects).length > 0 &&
       
@@ -111,7 +112,18 @@ function App(props) {
         return(
           
           <Card className="" style={{width: '22rem'}} key={i}> 
-          <Card.Img className="" variant="top" src={`${object.primaryimageurl}`} alt='art piece'/>
+          {/* <Card.Img className="" variant="top" src={
+            object.primaryimageurl.value ?
+            './img/imageComingSoon.png' :
+            
+            `${object.primaryimageurl}`
+            } alt='art piece'/> */}
+
+          {
+          object.primaryimageurl ?
+          <h3>exists</h3> :
+          <Card.Img className='' variant='top' src={ComingSoon} alt='art piece' />
+          }
           <Card.Body>
           <Card.Title>{object.title}</Card.Title>
           <Card.Text>{object.culture}</Card.Text>
