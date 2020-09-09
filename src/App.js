@@ -27,7 +27,7 @@ function App(props) {
   
   const [query, updateQuery] = useState({
     baseURL: 'https://api.harvardartmuseums.org/object?',
-    apiKey: 'apikey=' + APIKEY,
+    apiKey: `apikey=${APIKEY}`,
     categories: '',
     searchURL: ''
   })
