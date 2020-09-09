@@ -42,16 +42,21 @@ export default function MyCollection(props){
       }
     }
 
-    const handleThoughtsChange = event => {
-      setMyShownPiece({...myShownPiece, [event.target.name]: [event.target.value]})
-      console.log(myShownPiece)
-    }
+    // const handleThoughtsChange = event => {
+    //   setMyShownPiece({...myShownPiece, [event.target.name]: [event.target.value]})
+    //   console.log(myShownPiece)
+    // }
 
     const handleThoughtsSubmit = async event => {
       event.preventDefault()
+      console.log(event.target.personalThoughts.value)
+      // console.log('from submit', myShownPiece)
       
-      const response = await axios.put(`http://localhost:3001/api/${event.target.id}`, {myShownPiece})
-      await console.log('from a.pt', response.data)
+      const response = await axios.put(`http://localhost:3001/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
+
+      // const newThought = await axios.get(`http://localhost:3001/api/${event.target.id}`)
+      await setMyShownPiece(response.data)
+      // await console.log('from a.pt', response.data)
 
       // // // await setMyShownPiece({personalThoughts: response.data})
       // const response = await fetch(`http://localhost:3001/api/${event.target.id}`, {
@@ -64,6 +69,15 @@ export default function MyCollection(props){
       // })
       // const data = await response.json()
       // await setMyShownPiece(data)
+
+      // (()=>{
+      //   document.getElementById('thoughtForm').value = ''
+      // })
+      function eraseText() {
+        document.getElementById('thoughtForm').value = "";
+    }
+    eraseText()
+    
     }
 
     return(
@@ -84,7 +98,7 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece} handleThoughtsChange={handleThoughtsChange} handleThoughtsSubmit={handleThoughtsSubmit}/>
+        <Show myShownPiece={myShownPiece} /* handleThoughtsChange={handleThoughtsChange} */handleThoughtsSubmit={handleThoughtsSubmit}/>
 
       </div>
       {/* <Show myObject={myObject}/> */}
