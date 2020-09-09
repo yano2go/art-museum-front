@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
+import MyCollection from './components/MyCollection';
+import Button from 'react-bootstrap/Button'
+import Navbar from './components/Navbar';
+import Card from 'react-bootstrap/Card'
+import CardColumns from 'react-bootstrap/CardColumns'
+
+
 // require('dotenv').config()
 // import 'dotenv'
 
@@ -49,7 +56,7 @@ function App(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:3001/api/");
+      const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
       setMyObjects(response.data);
     }
     fetchData();
@@ -102,12 +109,13 @@ function App(props) {
     
     const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
     
-    const dbresponse = await axios.post('http://localhost:3001/api', {
+    const dbresponse = await axios.post('https://harvard-art-museum-backend.herokuapp.com/api', {
       culture: harvardResponse.data.culture,
       classification: harvardResponse.data.classification,
       description: harvardResponse.data.description,
       title: harvardResponse.data.title,
-      img: harvardResponse.data.primaryimageurl
+      img: harvardResponse.data.primaryimageurl,
+      personalThoughts: ''
       // harvardResponse.data 
     })
   }
@@ -131,7 +139,13 @@ function App(props) {
 
 
   return (
-    <div>
+    <div className="d-flex">
+
+      <div className="mr-5 border">
+      <Navbar />
+      </div>
+
+      <div className="">
       <form onSubmit={handleSubmit}>
 
       <label htmlFor='classification-select'>Select Classification</label>
@@ -165,28 +179,34 @@ function App(props) {
 					/>
 				</label> */}
 
-				<input type="submit" value="Search For Objects" />
+				<input variant="primary" type="submit" value="Search For Objects" />
         
       </form>
-      
+
+      <CardColumns>
       {Object.keys(allReturnedObjects).length > 0 &&
       // {showReturnedObjects}
+
       allReturnedObjects.records.map((object,i)=>{
         return(
-          <div key={i}> 
-          <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
-          <h2>{object.title}</h2>
-          <h2>{object.culture}</h2>
-          <p>{object.description}</p>
-          <button onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</button>
           
-          </div>
+          <Card className="" style={{width: '22rem'}} key={i}> 
+          <Card.Img className="" variant="top" src={`${object.primaryimageurl}`} alt='art piece'/>
+          <Card.Body>
+          <Card.Title>{object.title}</Card.Title>
+          <Card.Text>{object.culture}</Card.Text>
+          {/* <Card.Text>{object.description}</Card.Text> */}
+          <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
+          </Card.Body>
+          </Card>
+          
         )})
 
       }
+      </CardColumns>
       <hr />
       
-      <div className='my-collection'>
+      {/* <div className='my-collection'>
         {myObjects.map((myObject, i)=>{
           return (
             <div key={myObject._id}>
@@ -196,10 +216,13 @@ function App(props) {
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
             </div>  
           )
-        })}
+        })} */}
+        <MyCollection myObjects={myObjects} />
 
-      </div>
+      {/* </div> */}
 
+    </div>
+    
     </div>
   )
 }
