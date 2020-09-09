@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 export default function Sidebar(props){
     return(
     // <Navbar> 
-        <Nav defaultActiveKey="/home" className="flex-column border h-50 align-items-center justify-content-center">
+        <Nav defaultActiveKey="/home" className="flex-column w-25 vh-100  justify-content-center m-3">
   <Nav.Link href="/home">Active</Nav.Link>
   <Nav.Link eventKey="link-1">Link</Nav.Link>
   <Nav.Link eventKey="link-2">Link</Nav.Link>

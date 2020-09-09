@@ -5,6 +5,8 @@ import axios from 'axios'
 import MyCollection from './components/MyCollection';
 import Button from 'react-bootstrap/Button'
 import Navbar from './components/Navbar';
+import Card from 'react-bootstrap/Card'
+import CardColumns from 'react-bootstrap/CardColumns'
 
 
 // require('dotenv').config()
@@ -139,11 +141,11 @@ function App(props) {
   return (
     <div className="d-flex">
 
-      <div className="container ">
+      <div className="mr-5 border">
       <Navbar />
       </div>
 
-      <div>
+      <div className="">
       <form onSubmit={handleSubmit}>
 
       <label htmlFor='classification-select'>Select Classification</label>
@@ -181,24 +183,27 @@ function App(props) {
         
       </form>
 
-      
+      <CardColumns>
       {Object.keys(allReturnedObjects).length > 0 &&
       // {showReturnedObjects}
 
       allReturnedObjects.records.map((object,i)=>{
         return(
           
-          <div key={i}> 
-          <img src={object.primaryimageurl} alt='art piece' style={{maxWidth: '100px'}}></img>
-          <h2>{object.title}</h2>
-          <h2>{object.culture}</h2>
-          <p>{object.description}</p>
+          <Card className="" style={{width: '22rem'}} key={i}> 
+          <Card.Img className="" variant="top" src={`${object.primaryimageurl}`} alt='art piece'/>
+          <Card.Body>
+          <Card.Title>{object.title}</Card.Title>
+          <Card.Text>{object.culture}</Card.Text>
+          {/* <Card.Text>{object.description}</Card.Text> */}
           <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
+          </Card.Body>
+          </Card>
           
-          </div>
         )})
 
       }
+      </CardColumns>
       <hr />
       
       {/* <div className='my-collection'>
