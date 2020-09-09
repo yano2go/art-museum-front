@@ -32,7 +32,7 @@ export default function MyCollection(props){
     const handleClick = async event => {
       event.persist()
       try {
-        const response = await axios.get(`http://localhost:3001/api/${event.target.id}`)
+        const response = await axios.get(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`)
         await console.log('from r.d', response.data)
         await setMyShownPiece({...myShownPiece, ...response.data})
         // setMyShownPiece({})
@@ -52,7 +52,7 @@ export default function MyCollection(props){
       console.log(event.target.personalThoughts.value)
       // console.log('from submit', myShownPiece)
       
-      const response = await axios.put(`http://localhost:3001/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
+      const response = await axios.put(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
 
       // const newThought = await axios.get(`http://localhost:3001/api/${event.target.id}`)
       await setMyShownPiece(response.data)
@@ -84,6 +84,7 @@ export default function MyCollection(props){
 
       <div>
         <div className='collection-index'>
+          <h2>My Collection</h2>
         {props.myObjects.map((myObject, i)=>{
           return (
             <div key={myObject._id}>

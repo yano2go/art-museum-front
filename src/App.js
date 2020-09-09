@@ -56,7 +56,7 @@ function App(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:3001/api/");
+      const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
       setMyObjects(response.data);
     }
     fetchData();
@@ -109,7 +109,7 @@ function App(props) {
     
     const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
     
-    const dbresponse = await axios.post('http://localhost:3001/api', {
+    const dbresponse = await axios.post('https://harvard-art-museum-backend.herokuapp.com/api', {
       culture: harvardResponse.data.culture,
       classification: harvardResponse.data.classification,
       description: harvardResponse.data.description,
