@@ -100,7 +100,9 @@ function App(props) {
       </div>
 
       <div className="">
+
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
+      
       <CardColumns>
       {Object.keys(allReturnedObjects).length > 0 &&
       
