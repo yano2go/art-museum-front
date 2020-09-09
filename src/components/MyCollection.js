@@ -23,7 +23,7 @@ export default function MyCollection(props){
   // },[myShownPiece])
 
   useEffect(()=>{
-    console.log('from uE', myShownPiece)
+    // console.log('from uE', myShownPiece)
 
   },[myShownPiece])
 
@@ -33,9 +33,16 @@ export default function MyCollection(props){
       event.persist()
       try {
         const response = await axios.get(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`)
-        await console.log('from r.d', response.data)
+        // await console.log('from r.d', response.data)
+
+        // await setMyShownPiece({...myShownPiece, ...response.data})
+
+        await response.data.img ? 
+        await setMyShownPiece({...myShownPiece, ...response.data}) :
+        response.data.img = undefined
         await setMyShownPiece({...myShownPiece, ...response.data})
-        // setMyShownPiece({})
+        
+        
         // await console.log(myShownPiece)
       } catch (error) {
         console.error(error)
@@ -80,7 +87,12 @@ export default function MyCollection(props){
             <div key={myObject._id}>
               <h2>{myObject.title}</h2>
               <Link to={myObject._id} id={myObject._id}>
-              <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
+              {
+              myObject.img ?
+              <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/> :
+              <img src={props.ComingSoon} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
+            }
+             
               </Link>
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
             </div>  
@@ -88,7 +100,7 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit}/>
+        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={props.ComingSoon}/>
 
       </div>
       

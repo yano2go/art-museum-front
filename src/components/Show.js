@@ -8,7 +8,17 @@ export default function Show(props){
      return(
           <div>
                <h1>{props.myShownPiece.title}</h1>
-               <img style={{maxWidth: '200px'}} src={props.myShownPiece.img} alt={props.myShownPiece.title}/>
+               {/* {
+               props.myShownPiece.img ?
+               <img style={{maxWidth: '200px'}} src={props.myShownPiece.img} alt={props.myShownPiece.title}/> :
+               <img style={{maxWidth: '200px'}} src={props.ComingSoon} alt={props.myShownPiece.title}/>
+          } */}
+               <img style={{maxWidth: '200px'}} src={
+                    (!props.myShownPiece.img || props.myShownPiece.img === undefined) && Object.keys(props.myShownPiece).length > 0 ? 
+                    props.ComingSoon :
+                    props.myShownPiece.img
+                    } 
+                    alt={props.myShownPiece.title}/>
                <h2>{props.myShownPiece.culture}</h2>
                <p>{props.myShownPiece.personalThoughts}</p>
                {Object.keys(props.myShownPiece).length > 0 && 

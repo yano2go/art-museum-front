@@ -121,7 +121,7 @@ function App(props) {
 
           {
           object.primaryimageurl ?
-          <h3>exists</h3> :
+          <Card.Img className='' variant='top' src={`${object.primaryimageurl}`} alt='art piece' /> :
           <Card.Img className='' variant='top' src={ComingSoon} alt='art piece' />
           }
           <Card.Body>
@@ -138,7 +138,7 @@ function App(props) {
       </CardColumns>
       <hr />
       
-        <MyCollection myObjects={myObjects} />
+        <MyCollection myObjects={myObjects} ComingSoon={ComingSoon}/>
 
     </div>
     
