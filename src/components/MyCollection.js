@@ -81,7 +81,7 @@ export default function MyCollection(props){
               <h2>{myObject.title}</h2>
               <Link to={myObject._id} id={myObject._id}>
               <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
-              <h2 id={myObject._id}>{myObject.culture}</h2>
+              {/* <h2 id={myObject._id}>{myObject.culture}</h2> */}
               </Link>
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
             </div>  

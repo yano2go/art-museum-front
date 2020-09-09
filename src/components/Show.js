@@ -9,6 +9,7 @@ export default function Show(props){
           <div>
                <h1>{props.myShownPiece.title}</h1>
                <img style={{maxWidth: '200px'}} src={props.myShownPiece.img} alt={props.myShownPiece.title}/>
+               <h2>{props.myShownPiece.culture}</h2>
                <p>{props.myShownPiece.personalThoughts}</p>
                {Object.keys(props.myShownPiece).length > 0 &&
                <div> 
