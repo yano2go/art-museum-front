@@ -30,7 +30,7 @@ export default function ReturnSearchItems(props) {
                 </form>
                 </div>
             }
-           </div>     
+           </div>   
 
             <CardColumns>
 
