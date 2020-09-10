@@ -23,29 +23,42 @@ function App(props) {
     searchURL: ''
   })
   
-  const [myObjects, setMyObjects] = useState([])
+  const [myCollection, setMyCollection] = useState([])
+
+  // useEffect(() => {
+	// 	query.searchURL.length > 0 &&
+	// 		(async () => {
+	// 			try {
+  //         const response = await axios.get(query.searchURL)
+  //         setAllReturnedObjects({...response.data });
+  //         updateQuery({ ...query, searchURL: '', categories: '' });
+	// 			} catch (error) {
+	// 				console.error(error);
+	// 			}
+	// 		})();
+  // }, [query]);
 
   useEffect(() => {
 		query.searchURL.length > 0 &&
 			(async () => {
 				try {
-          // console.log(query.searchURL)
-          const response = await axios.get(query.searchURL)
-          setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
-					updateQuery({ ...query, searchURL: '', categories: '' });
+					const response = await fetch(query.searchURL);
+					const data = await response.json(); // this is the point where we now have the movie object, NOT the response object itself
+					setAllReturnedObjects({ ...allReturnedObjects, ...data });
+					updateQuery({ ...query, searchURL: '', title: '' });
 				} catch (error) {
 					console.error(error);
 				}
 			})();
-  }, [allReturnedObjects, query]);
+	}, [query]);
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
-      setMyObjects(response.data);
+      setMyCollection(response.data);
     }
     fetchData();
-  }, [myObjects]);
+  }, [myCollection]);
   
   const handleSubmit = event => {
     event.preventDefault();
@@ -78,7 +91,12 @@ function App(props) {
   
   const handleChange = event => {
 		updateQuery({ ...query, ...{ [event.target.id]: event.target.value } });
-	};
+  };
+  
+  // const handlePreviousPage = async event => {
+  //   event.preventDefault()
+  //   const response = await axios.get()
+  // }
 
   const handleAddToCollection = async (event) => {
 
@@ -105,12 +123,12 @@ function App(props) {
 
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
 
-      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} ComingSoon={ComingSoon} />
+      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} /* handlePreviousPage={handlePreviousPage} handleNextPage={handleNextPage} */ setAllReturnedObjects={setAllReturnedObjects} ComingSoon={ComingSoon} />
 
       
       <hr />
       
-        <MyCollection myObjects={myObjects} ComingSoon={ComingSoon}/>
+        <MyCollection myCollection={myCollection} ComingSoon={ComingSoon}/>
 
     </div>
     
