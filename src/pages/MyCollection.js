@@ -4,7 +4,8 @@ import axios from "axios"
 // import App from "../App"
 import {Link} from "react-router-dom"
 import ComingSoon from '../img/imageComingSoon.png'
-
+import Card from 'react-bootstrap/Card'
+import { Carousel } from 'react-bootstrap'
 
 export default function MyCollection(props){
 
@@ -93,34 +94,29 @@ export default function MyCollection(props){
     }
 
     return(
-
       <div>
         <div className='collection-index'>
-          
+        <Carousel>  
         {myCollection.map((myObject, i)=>{
           return (
-            <div key={myObject._id}>
-              <h2>{myObject.title}</h2>
-              {/* {console.log(myObject.title)} */}
-              {/* <Link to={myObject._id} id={myObject._id}> */}
-              {
-              myObject.img ?
-              <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/> :
-              <img src={ComingSoon} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
-            }
-             
-              {/* </Link> */}
-          <p style={{fontSize: '15px'}}>{myObject.description}</p>
-          {/* {console.log(myObject.title)} */}
-            </div>  
+            <Carousel.Item key={myObject._id}>
+            <Card style={{width: '8rem'}}>
+            {/* <Link to={myObject._id} id={myObject._id}> */}
+              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+            {/* </Link> */}
+            <Card.Body>
+              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
+            </Card.Body>
+          </Card>
+          </Carousel.Item>
+
           )
           
         })}
         <hr />
         <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
-
+        </Carousel>
       </div>
-      
         </div>
       
     )

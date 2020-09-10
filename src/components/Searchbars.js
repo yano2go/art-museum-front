@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 export default function Searchbars(props){
     return (
 
-      <Form onSubmit={props.handleSubmit} style={{marginBottom: '50px'}}>
+      <Form onSubmit={props.handleSubmit} style={{marginBottom: '50px', paddingLeft: '280px'}}>
         <Form.Group>
           <Form.Label style={{fontSize: '2rem', padding: '8px 0'}}as='legend' column sm={12}>
             Explore the Museum!
