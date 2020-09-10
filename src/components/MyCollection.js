@@ -66,7 +66,7 @@ export default function MyCollection(props){
 
     const handleThoughtsSubmit = async event => {
       event.preventDefault()
-      console.log(event.target.personalThoughts.value)
+      // console.log(event.target.personalThoughts.value)
       // console.log('from submit', myShownPiece)
       const response = await axios.put(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
       await setMyShownPiece(response.data)
