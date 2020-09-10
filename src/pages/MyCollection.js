@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Show from "./Show.js"
+import Show from "../components/Show.js"
 import axios from "axios"
 // import App from "../App"
 import {Link} from "react-router-dom"
+import ComingSoon from '../img/imageComingSoon.png'
 
 
 export default function MyCollection(props){
@@ -21,6 +22,20 @@ export default function MyCollection(props){
   //     }
   //   })()
   // },[myShownPiece])
+
+  const [myCollection, setMyCollection] = useState([])
+
+  useEffect(() => {
+    // myCollection.length > 0 && 
+
+    (async () => {
+   
+      const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
+      await setMyCollection(response.data);
+      
+    })()
+    
+  }, [myCollection]);
 
   useEffect(()=>{
     // console.log('from uE', myShownPiece)
@@ -81,20 +96,20 @@ export default function MyCollection(props){
 
       <div>
         <div className='collection-index'>
-          <h2>My Collection</h2>
-        {props.myCollection.map((myObject, i)=>{
+          
+        {myCollection.map((myObject, i)=>{
           return (
             <div key={myObject._id}>
               <h2>{myObject.title}</h2>
               {/* {console.log(myObject.title)} */}
-              <Link to={myObject._id} id={myObject._id}>
+              {/* <Link to={myObject._id} id={myObject._id}> */}
               {
               myObject.img ?
               <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/> :
-              <img src={props.ComingSoon} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
+              <img src={ComingSoon} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
             }
              
-              </Link>
+              {/* </Link> */}
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
           {/* {console.log(myObject.title)} */}
             </div>  
@@ -102,7 +117,7 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={props.ComingSoon} handleDelete={handleDelete}/>
+        <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
 
       </div>
       
