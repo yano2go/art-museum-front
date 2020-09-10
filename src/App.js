@@ -67,6 +67,13 @@ function App(props) {
     updateQuery({...query, searchURL: `${allReturnedObjects.info.next}`})
     console.log(query.searchURL)
   }
+
+  const handlePrevious = event =>{
+    event.preventDefault()
+    updateQuery({...query, searchURL: `${allReturnedObjects.info.prev}`})
+    console.log(query.searchURL)
+
+  }
   
   const handleSubmit = event => {
     event.preventDefault();
@@ -131,7 +138,7 @@ function App(props) {
 
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
 
-      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} /* handlePreviousPage={handlePreviousPage} handleNextPage={handleNextPage} */ setAllReturnedObjects={setAllReturnedObjects} handleNext={handleNext} ComingSoon={ComingSoon} />
+      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} /* handlePreviousPage={handlePreviousPage} handleNextPage={handleNextPage} */ setAllReturnedObjects={setAllReturnedObjects} handleNext={handleNext}handlePrevious={handlePrevious} ComingSoon={ComingSoon} />
 
       
       <hr />
