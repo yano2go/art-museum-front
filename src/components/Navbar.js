@@ -1,18 +1,42 @@
-import React from 'react';
-import Nav from 'react-bootstrap/Nav'
-// import Navbar from 'react-bootstrap/Navbar'
-
-export default function Sidebar(props){
-    return(
-    
-        <Nav defaultActiveKey="/home" className="flex-column w-25 vh-100  justify-content-center m-3">
-  <Nav.Link href="/home">Active</Nav.Link>
-  <Nav.Link eventKey="link-1">Link</Nav.Link>
-  <Nav.Link eventKey="link-2">Link</Nav.Link>
-  <Nav.Link eventKey="disabled" disabled>
-    Disabled
-  </Nav.Link>
-</Nav>
- 
+import React, { useState } from 'react'
+import * as FaIcons from "react-icons/fa"
+import * as AiIcons from "react-icons/ai"
+import { SidebarData } from './SidebarData'
+import { Link } from 'react-router-dom'
+import './Navbar.css'
+import { IconContext } from 'react-icons'
+function Navbar() {
+    const [sidebar, setSidebar] = useState(false)
+const showSidebar = () => setSidebar(!sidebar)
+    return (
+        <>
+        <IconContext.Provider value={{color: 'ghostwhite'}}>
+            <div className='navbar'>
+                <Link to ="#" className="menu-bars">
+                    <FaIcons.FaBars onClick={showSidebar}/>
+                </Link> 
+            </div>  
+            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul className="nav-menu-items" onClick={showSidebar}>
+                    <li className="navbar-toggle">
+                        <Link to="#" className='menu-bars'>
+                            <AiIcons.AiOutlineClose />
+                        </Link>
+                    </li>
+                    {SidebarData.map((item, i)=>{
+                        return(
+                            <li key={i} className={item.class}>
+                                <Link to={item.path}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </nav>
+            </IconContext.Provider>
+        </>
     )
 }
+export default Navbar

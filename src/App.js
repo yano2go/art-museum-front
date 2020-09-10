@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios'
-import MyCollection from './components/MyCollection';
+import MyCollection from './pages/MyCollection';
 import Searchbars from './components/Searchbars'
 import Navbar from './components/Navbar';
 // import Button from 'react-bootstrap/Button'
