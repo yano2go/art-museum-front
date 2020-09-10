@@ -49,6 +49,7 @@
 }
 .nav-menu-items {
     width: 100%;
+    z-index: 2;
 }
 .navbar-toggle{
     background-color: gray;
@@ -57,6 +58,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    z-index: 2;
 }
 span {
     margin-left: 16px;
