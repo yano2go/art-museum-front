@@ -101,7 +101,7 @@ export default function MyCollection(props){
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={props.ComingSoon}/>
+        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={props.ComingSoon} handleDelete={handleDelete}/>
 
       </div>
       
