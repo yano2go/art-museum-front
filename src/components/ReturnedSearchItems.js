@@ -32,6 +32,9 @@ export default function ReturnSearchItems(props) {
           <Card.Img className='' variant='top' src={`${object.primaryimageurl}`} alt='art piece' /> :
           <Card.Img className='' variant='top' src={props.ComingSoon} alt='art piece' />
           }
+
+          {/* {console.log(object.title)} */}
+          
           <Card.Body>
           <Card.Title>{object.title}</Card.Title>
           <Card.Text>{object.culture}</Card.Text>
@@ -39,6 +42,7 @@ export default function ReturnSearchItems(props) {
           <Button variant="primary" onClick={props.handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
           </Card.Body>
           </Card>
+          
           
         )})
 
