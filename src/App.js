@@ -23,7 +23,7 @@ function App(props) {
     searchURL: ''
   })
   
-  const [myObjects, setMyObjects] = useState([])
+  const [myCollection, setMyCollection] = useState([])
 
   useEffect(() => {
 		query.searchURL.length > 0 &&
@@ -34,19 +34,33 @@ function App(props) {
           setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
           await updateQuery({ ...query, categories: '', searchURL: '' });
           await console.log(query.searchURL.length)
+
 				} catch (error) {
 					console.error(error);
 				}
 			})();
   }, [query]);
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
+  //     await setMyCollection(response.data);
+  //     await setMyCollection([])
+  //   }
+  //   fetchData();
+  // }, [myCollection]);
+
   useEffect(() => {
-    async function fetchData() {
+    // myCollection.length > 0 && 
+
+    (async () => {
+   
       const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
-      setMyObjects(response.data);
-    }
-    fetchData();
-  }, [myObjects]);
+      await setMyCollection(response.data);
+      
+    })()
+    
+  }, [myCollection]);
   
   const handleSubmit = event => {
     event.preventDefault();
@@ -111,7 +125,7 @@ function App(props) {
       
       <hr />
       
-        <MyCollection myObjects={myObjects} ComingSoon={ComingSoon}/>
+        <MyCollection myCollection={myCollection} ComingSoon={ComingSoon}/>
 
     </div>
     

@@ -82,7 +82,7 @@ export default function MyCollection(props){
       <div>
         <div className='collection-index'>
           <h2>My Collection</h2>
-        {props.myObjects.map((myObject, i)=>{
+        {props.myCollection.map((myObject, i)=>{
           return (
             <div key={myObject._id}>
               <h2>{myObject.title}</h2>
@@ -95,6 +95,7 @@ export default function MyCollection(props){
              
               </Link>
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
+          {/* {console.log(myObject.title)} */}
             </div>  
           )
           
