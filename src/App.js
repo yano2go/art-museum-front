@@ -32,12 +32,13 @@ function App(props) {
           // console.log(query.searchURL)
           const response = await axios.get(query.searchURL)
           setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
-					updateQuery({ ...query, searchURL: '', categories: '' });
+          await updateQuery({ ...query, categories: '', searchURL: '' });
+          await console.log(query.searchURL.length)
 				} catch (error) {
 					console.error(error);
 				}
 			})();
-  }, [allReturnedObjects, query]);
+  }, [query]);
 
   useEffect(() => {
     async function fetchData() {
