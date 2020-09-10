@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import ComingSoon from '../img/imageComingSoon.png'
 import Card from 'react-bootstrap/Card'
 import { Carousel } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
 
 export default function MyCollection(props){
 
@@ -96,11 +97,14 @@ export default function MyCollection(props){
     return(
       <div>
         <div className='collection-index'>
-        <Carousel>  
+        <Carousel className='d-flex' style={{backgroundColor: 'blue', margin: '40px 0 0 260px', maxWidth: '500px'}}>  
         {myCollection.map((myObject, i)=>{
           return (
             <Carousel.Item key={myObject._id}>
-            <Card style={{width: '8rem'}}>
+            <Row style={{marginLeft: '35px'}}>
+
+            
+            <Card className='border' style={{width: '8rem', margin: '10px'}}>
             {/* <Link to={myObject._id} id={myObject._id}> */}
               <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
             {/* </Link> */}
@@ -108,14 +112,31 @@ export default function MyCollection(props){
               <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
             </Card.Body>
           </Card>
+            <Card className='border' style={{width: '8rem', margin: '10px'}}>
+            {/* <Link to={myObject._id} id={myObject._id}> */}
+              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+            {/* </Link> */}
+            <Card.Body>
+              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
+            </Card.Body>
+          </Card>
+            <Card className='border' style={{width: '8rem', margin: '10px'}}>
+            {/* <Link to={myObject._id} id={myObject._id}> */}
+              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+            {/* </Link> */}
+            <Card.Body>
+              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
+            </Card.Body>
+          </Card>
+          </Row>
           </Carousel.Item>
 
           )
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
         </Carousel>
+        <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
       </div>
         </div>
       
