@@ -25,39 +25,41 @@ function App(props) {
   
   const [myCollection, setMyCollection] = useState([])
 
-  // useEffect(() => {
-	// 	query.searchURL.length > 0 &&
-	// 		(async () => {
-	// 			try {
-  //         const response = await axios.get(query.searchURL)
-  //         setAllReturnedObjects({...response.data });
-  //         updateQuery({ ...query, searchURL: '', categories: '' });
-	// 			} catch (error) {
-	// 				console.error(error);
-	// 			}
-	// 		})();
-  // }, [query]);
-
   useEffect(() => {
 		query.searchURL.length > 0 &&
 			(async () => {
 				try {
-					const response = await fetch(query.searchURL);
-					const data = await response.json(); // this is the point where we now have the movie object, NOT the response object itself
-					setAllReturnedObjects({ ...allReturnedObjects, ...data });
-					updateQuery({ ...query, searchURL: '', title: '' });
+          // console.log(query.searchURL)
+          const response = await axios.get(query.searchURL)
+          setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
+          await updateQuery({ ...query, categories: '', searchURL: '' });
+          await console.log(query.searchURL.length)
+
 				} catch (error) {
 					console.error(error);
 				}
 			})();
-	}, [query]);
+  }, [query]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
+  //     await setMyCollection(response.data);
+  //     await setMyCollection([])
+  //   }
+  //   fetchData();
+  // }, [myCollection]);
 
   useEffect(() => {
-    async function fetchData() {
+    // myCollection.length > 0 && 
+
+    (async () => {
+   
       const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
-      setMyCollection(response.data);
-    }
-    fetchData();
+      await setMyCollection(response.data);
+      
+    })()
+    
   }, [myCollection]);
   
   const handleSubmit = event => {

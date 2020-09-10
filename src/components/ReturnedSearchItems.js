@@ -41,29 +41,28 @@ export default function ReturnSearchItems(props) {
             `${object.primaryimageurl}`
             } alt='art piece'/> */}
 
-                                {
-                                    object.primaryimageurl ?
-                                        <Card.Img className='' variant='top' src={`${object.primaryimageurl}`} alt='art piece' /> :
-                                        <Card.Img className='' variant='top' src={props.ComingSoon} alt='art piece' />
-                                }
-                                <Card.Body>
-                                    <Card.Title>{object.title}</Card.Title>
-                                    <Card.Text>{object.culture}</Card.Text>
+          {
+          object.primaryimageurl ?
+          <Card.Img className='' variant='top' src={`${object.primaryimageurl}`} alt='art piece' /> :
+          <Card.Img className='' variant='top' src={props.ComingSoon} alt='art piece' />
+          }
 
-                                    <Button variant="primary" onClick={props.handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
-                                </Card.Body>
-                                {console.log(object.title)}
-                            </Card>
+          {/* {console.log(object.title)} */}
+          
+          <Card.Body>
+          <Card.Title>{object.title}</Card.Title>
+          <Card.Text>{object.culture}</Card.Text>
+          
+          <Button variant="primary" onClick={props.handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
+          </Card.Body>
+          </Card>
+          
+          
+        )})
 
-
-
-                        )
-                    })
-
-                }
-            </CardColumns>
-        </div>
-        
+      }
+      </CardColumns>
+      </div>
     )
 
 }

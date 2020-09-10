@@ -86,7 +86,7 @@ export default function MyCollection(props){
           return (
             <div key={myObject._id}>
               <h2>{myObject.title}</h2>
-              {console.log(myObject.title)}
+              {/* {console.log(myObject.title)} */}
               <Link to={myObject._id} id={myObject._id}>
               {
               myObject.img ?
@@ -96,6 +96,7 @@ export default function MyCollection(props){
              
               </Link>
           <p style={{fontSize: '15px'}}>{myObject.description}</p>
+          {/* {console.log(myObject.title)} */}
             </div>  
           )
           
