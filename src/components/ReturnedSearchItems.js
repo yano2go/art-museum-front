@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-import {Link} from 'react-router-dom'
+
 
 export default function ReturnSearchItems(props) {
 
@@ -14,13 +14,19 @@ export default function ReturnSearchItems(props) {
         <div>
             <div>
             
-            {/* {Object.keys(props.allReturnedObjects).length > 0 &&
+            {Object.keys(props.allReturnedObjects).length > 0 &&
+            <div>
 
                 
 
                 <h3>On page {props.allReturnedObjects.info.page} of {props.allReturnedObjects.info.pages}</h3>
                 
-                <Link to={props.allReturnedObjects.info.next} />} */}
+
+                <form onSubmit={props.handleNext}>
+                    <input type='submit' value='Go to Next Page'/>
+                </form>
+                </div>
+            }
            </div>     
 
             <CardColumns>
