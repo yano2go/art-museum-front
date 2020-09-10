@@ -3,11 +3,12 @@ import './App.css';
 import axios from 'axios'
 import MyCollection from './components/MyCollection';
 import Searchbars from './components/Searchbars'
-import Button from 'react-bootstrap/Button'
 import Navbar from './components/Navbar';
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
+// import Button from 'react-bootstrap/Button'
+// import Card from 'react-bootstrap/Card'
+// import CardColumns from 'react-bootstrap/CardColumns'
 import ComingSoon from './img/imageComingSoon.png'
+import ReturnedSearchItems from './components/ReturnedSearchItems'
 
 function App(props) {
 
@@ -28,7 +29,7 @@ function App(props) {
 		query.searchURL.length > 0 &&
 			(async () => {
 				try {
-          console.log(query.searchURL)
+          // console.log(query.searchURL)
           const response = await axios.get(query.searchURL)
           setAllReturnedObjects({ ...allReturnedObjects, ...response.data });
 					updateQuery({ ...query, searchURL: '', categories: '' });
@@ -104,38 +105,9 @@ function App(props) {
 
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
 
-      <CardColumns>
-      {Object.keys(allReturnedObjects).length > 0 &&
+      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} ComingSoon={ComingSoon} />
+
       
-
-      allReturnedObjects.records.map((object,i)=>{
-        return(
-          
-          <Card className="" style={{width: '22rem'}} key={i}> 
-          {/* <Card.Img className="" variant="top" src={
-            object.primaryimageurl.value ?
-            './img/imageComingSoon.png' :
-            
-            `${object.primaryimageurl}`
-            } alt='art piece'/> */}
-
-          {
-          object.primaryimageurl ?
-          <Card.Img className='' variant='top' src={`${object.primaryimageurl}`} alt='art piece' /> :
-          <Card.Img className='' variant='top' src={ComingSoon} alt='art piece' />
-          }
-          <Card.Body>
-          <Card.Title>{object.title}</Card.Title>
-          <Card.Text>{object.culture}</Card.Text>
-          
-          <Button variant="primary" onClick={handleAddToCollection} title={object.title} id={object.id} culture={object.culture} classification={object.classification} type='button'>Add to Collection</Button>
-          </Card.Body>
-          </Card>
-          
-        )})
-
-      }
-      </CardColumns>
       <hr />
       
         <MyCollection myObjects={myObjects} ComingSoon={ComingSoon}/>
