@@ -61,6 +61,19 @@ function App(props) {
     })()
     
   }, [myCollection]);
+
+  const handleNext = event => {
+    event.preventDefault()
+    updateQuery({...query, searchURL: `${allReturnedObjects.info.next}`})
+    console.log(query.searchURL)
+  }
+
+  const handlePrevious = event =>{
+    event.preventDefault()
+    updateQuery({...query, searchURL: `${allReturnedObjects.info.prev}`})
+    console.log(query.searchURL)
+
+  }
   
   const handleSubmit = event => {
     event.preventDefault();
@@ -93,7 +106,12 @@ function App(props) {
   
   const handleChange = event => {
 		updateQuery({ ...query, ...{ [event.target.id]: event.target.value } });
-	};
+  };
+  
+  // const handlePreviousPage = async event => {
+  //   event.preventDefault()
+  //   const response = await axios.get()
+  // }
 
   const handleAddToCollection = async (event) => {
 
@@ -120,7 +138,7 @@ function App(props) {
 
       <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
 
-      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} ComingSoon={ComingSoon} />
+      <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} /* handlePreviousPage={handlePreviousPage} handleNextPage={handleNextPage} */ setAllReturnedObjects={setAllReturnedObjects} handleNext={handleNext}handlePrevious={handlePrevious} ComingSoon={ComingSoon} />
 
       
       <hr />

@@ -86,6 +86,7 @@ export default function MyCollection(props){
           return (
             <div key={myObject._id}>
               <h2>{myObject.title}</h2>
+              {/* {console.log(myObject.title)} */}
               <Link to={myObject._id} id={myObject._id}>
               {
               myObject.img ?
