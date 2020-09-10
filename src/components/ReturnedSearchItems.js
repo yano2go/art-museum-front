@@ -21,7 +21,10 @@ export default function ReturnSearchItems(props) {
 
                 <h3>On page {props.allReturnedObjects.info.page} of {props.allReturnedObjects.info.pages}</h3>
                 
+                <form onSubmit={props.handlePrevious}>
+                   <input type="submit" value="Go Back to the Previous Page" />
 
+               </form>
                 <form onSubmit={props.handleNext}>
                     <input type='submit' value='Go to Next Page'/>
                 </form>
