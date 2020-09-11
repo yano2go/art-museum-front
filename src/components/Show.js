@@ -2,6 +2,7 @@ import React from "react"
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import ComingSoon from '../img/imageComingSoon.png'
 
 
 export default function Show(props) {
@@ -34,7 +35,12 @@ export default function Show(props) {
                                    </Card.Body>
                               </Card>
                               <Card className='showImage align-items-center' style={{ width: '20rem' }}>
-                                   <Card.Img variant="top" style={{padding: '10px', borderRadius: '20px'}} src={img} />
+                                   {
+                                   img ?
+                                   <Card.Img variant="top" style={{padding: '10px', borderRadius: '20px'}} src={img} /> :
+                                   <Card.Img variant="top" style={{padding: '10px', borderRadius: '20px'}} src={ComingSoon} />
+                              }
+                                   {/* <Card.Img variant="top" style={{padding: '10px', borderRadius: '20px'}} src={img} /> */}
                                    <Card.Body>
                                         <Card.Title className='text-center'>{title}</Card.Title>
                                         <Card.Subtitle className='text-center'>{`(${artist}, ${culture}, ${dated})`}</Card.Subtitle>

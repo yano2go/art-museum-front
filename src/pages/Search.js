@@ -5,6 +5,8 @@ import Searchbars from '../components/Searchbars'
 import ComingSoon from '../img/imageComingSoon.png'
 import ReturnedSearchItems from '../components/ReturnedSearchItems'
 
+import { useAlert } from 'react-alert'
+
 
 
 function Search() {
@@ -88,9 +90,11 @@ function Search() {
       //   event.preventDefault()
       //   const response = await axios.get()
       // }
+
+      const alert = useAlert()
     
       const handleAddToCollection = async (event) => {
-    
+        alert.show('Added to collection!')
         const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
         
         const dbresponse = await axios.post('https://harvard-art-museum-backend.herokuapp.com/api', {

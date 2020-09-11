@@ -97,7 +97,7 @@ export default function MyCollection(props){
 
     return(
       <div className='d-flex flex-column'>
-      <div>
+        <div>
         <div className='d-flex justify-content-center collection-index'>
         <Carousel className='d-flex' style={{backgroundColor: 'rgba(14, 69, 86, 0.5)', marginTop: '50px', maxWidth: '700px', padding: '25px 40px 25px 40px', borderRadius: '5px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'}}>  
         {myCollection.map((myObject, i)=>{
@@ -105,9 +105,16 @@ export default function MyCollection(props){
             <Carousel.Item  key={myObject._id}>
           
             <Card className='border d-flex' style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', width: '8rem', margin: '10px'}}>
-            {/* <Link to={myObject._id} id={myObject._id}> */}
-              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
-            {/* </Link> */}
+
+              {
+                myObject.img ?
+                <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} /> :
+                <Card.Img variant='top' src={ComingSoon} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+
+              }
+            
+              
+            
             <Card.Body>
               <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
             </Card.Body>
