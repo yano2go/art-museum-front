@@ -97,7 +97,7 @@ function Search() {
         alert.show('Added to collection!')
         const harvardResponse = await axios.get(`https://api.harvardartmuseums.org/object/${event.target.id}?apikey=${APIKEY}`)
 
-        const dbresponse = await axios.post('https://art-museum-front.herokuapp.com/api', {
+        const dbresponse = await axios.post('https://art-museum-back-end.herokuapp.com/api', {
           culture: harvardResponse.data.culture,
           classification: harvardResponse.data.classification,
           description: harvardResponse.data.description,
