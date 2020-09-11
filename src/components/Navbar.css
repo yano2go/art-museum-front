@@ -4,6 +4,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    
 }
 .menu-bars {
     margin-left: 2rem;
@@ -24,6 +25,8 @@
 .nav-menu.active {
     left: 0;
     transition: 350ms;
+    position: fixed;
+    z-index: 2;
 }
 .nav-text{
     display: flex;
