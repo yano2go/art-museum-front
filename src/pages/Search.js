@@ -114,7 +114,7 @@ function Search() {
     return (
         <div className="search">
             <Searchbars handleChange={handleChange} handleSubmit={handleSubmit} />
-       <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} setAllReturnedObjects={setAllReturnedObjects} handleNext={handleNext} handlePrevios={handlePrevious} ComingSoon={ComingSoon} />
+       <ReturnedSearchItems allReturnedObjects={allReturnedObjects} handleAddToCollection={handleAddToCollection} setAllReturnedObjects={setAllReturnedObjects} handleNext={handleNext} handlePrevious={handlePrevious} ComingSoon={ComingSoon} />
         </div>
     )
 }
