@@ -15,9 +15,10 @@ export default function Searchbars(props){
           <Form.Control style={{width: '60%', marginRight: '10px'}} id='classificationSelect' value={undefined} onChange={props.handleChange} as='select' size='sm' custom>
             <option value=''></option>
             <option value='Coins'>Coins</option>
-            <option value='Paintings'>Paintings</option>
             <option value='Furniture'>Furniture</option>
+            <option value='Paintings'>Paintings</option>
             <option value='Photographs'>Photographs</option>
+            <option value='Prints'>Prints</option>
             <option value='Vessels'>Vessels</option>
           </Form.Control>
         </Form.Group>
@@ -31,6 +32,7 @@ export default function Searchbars(props){
             <option value='French'>French</option>
             <option value='Greek'>Greek</option>
             <option value='Italian'>Italian</option>
+            <option value='Japanese'>Japanese</option>
           </Form.Control>
         </Form.Group>
 

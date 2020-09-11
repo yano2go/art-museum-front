@@ -15,18 +15,18 @@ export default function ReturnSearchItems(props) {
             <div>
             
             {Object.keys(props.allReturnedObjects).length > 0 &&
-            <div>
+            <div style={{display:"flex", justifyContent:"space-around", marginBottom:"25px", fontSize:"12px"}}>
 
-                
-
-                <h3>On page {props.allReturnedObjects.info.page} of {props.allReturnedObjects.info.pages}</h3>
-                
                 <form onSubmit={props.handlePrevious}>
-                   <input type="submit" value="Go Back to the Previous Page" />
+                   <input style={{padding: '5px', backgroundColor:"rgba(14, 69, 86, 0.9)", color:"ghostwhite", borderRadius: "4px", border:"1px solid"}} type="submit" value="PREVIOUS" />
 
                </form>
+
+                <h3 style={{fontSize:"16px"}}>PAGE {props.allReturnedObjects.info.page} of {props.allReturnedObjects.info.pages}</h3>
+                
+               
                 <form onSubmit={props.handleNext}>
-                    <input type='submit' value='Go to Next Page'/>
+                    <input style={{padding: '5px', backgroundColor:"rgba(14, 69, 86, 0.9)", color:"ghostwhite", borderRadius: "4px", border:"1px solid"}} type='submit' value='NEXT'/>
                 </form>
                 </div>
             }
