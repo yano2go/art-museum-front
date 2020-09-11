@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project3 - Art Museum
 
-## Available Scripts
+###### Site Link: 
++ Heroku: https://harvard-art-museum.herokuapp.com/
++ GitHub (Front-End): https://github.com/JamesLeggero/art-museum-front
+          (Back-End): https://github.com/JamesLeggero/art-museum-back
 
-In the project directory, you can run:
+### Application Description
+A website with seamless API integration throught the Harvard Art Museum Database
+Through the API, we displayed thousands of pieces of content from cultures and societies throughout the world and its history. Users can now access art pieces and information they never before could have seen, through our app which allows them to collect their favorite art pieces. Once selected, users can then leave notes and comments on their favorite art pieces for future reference and usage. This application utilizes all 7 RESTful routes, achieving full CRUD capability. 
 
-### `yarn start`
+### User Stories
++ Users can utilize the user-friendly search function to explore fine art pieces in several different categories, such as culture or collection
++ Users can select art pieces they identify with and add them to their personal collection
++ Users can add notes/personal comments to the art pieces in their personal collection
++ Users can remove art pieces as desired 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technologies Used
++ MERN Stack (MongoDB/Mongoose, Express.js, React.js, Node.js)
++ MVC File Structure
++ 7 RESTful routes / Full CRUD
++ Heroku App
++ React-Bootstrap / Flexbox
++ Axios
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Approach 
+##### Summary
++ Utilized and advanced API to display art pieces that engage users. 
++ Through the integration, we aimed to deliver content to the user that was easy to use and understand. 
++ In this process, we utilized several programming applications such as 
+Bootstrap, React, Node.js, etc.
++ As a collective, we built a fully functional MERN app. 
++ We utilized React router for front-end 'routing'
 
-### `yarn test`
+##### Unsolved Problems/Future Features
++ Carousel displaying multiple items of content (Fed by API)
++ User login/authentication
++ Adding additional search criteria/fields
++ Personalized content recommendations based on user preferences
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
