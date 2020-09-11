@@ -6,9 +6,9 @@ import Button from 'react-bootstrap/Button'
 export default function Searchbars(props){
     return (
 
-      <Form onSubmit={props.handleSubmit} style={{marginBottom: '50px', paddingLeft: '280px'}}>
+      <Form onSubmit={props.handleSubmit} style={{marginBottom: '50px', paddingLeft: '280px', paddingRight:"280px"}}>
         <Form.Group>
-          <Form.Label style={{fontSize: '2rem', padding: '8px 0'}}as='legend' column sm={12}>
+          <Form.Label style={{fontSize: '2rem', padding: '8px 0', marginTop:"30px"}}as='legend' column sm={12}>
             Explore the Museum!
           </Form.Label>
           <Form.Label style={{marginRight: '15px'}}>Select Classification</Form.Label>
@@ -35,7 +35,7 @@ export default function Searchbars(props){
         </Form.Group>
 
         <input className='btn btn-primary' variant='primary' type='submit' value='Search' />
-
+<hr />
       </Form>
 
       // <>
@@ -67,6 +67,8 @@ export default function Searchbars(props){
       // </form>
 
       // {/* </> */}
+      
     )
+    
 }
 
