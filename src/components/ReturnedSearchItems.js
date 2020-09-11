@@ -32,7 +32,7 @@ export default function ReturnSearchItems(props) {
             }
            </div>   
 
-            <CardColumns>
+            <CardColumns style={{marginLeft:"150px"}}>
 
                 {Object.keys(props.allReturnedObjects).length > 0 &&
                 
