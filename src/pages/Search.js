@@ -99,6 +99,8 @@ function Search() {
           description: harvardResponse.data.description,
           title: harvardResponse.data.title,
           img: harvardResponse.data.primaryimageurl,
+          artist: harvardResponse.data.people[0].name,
+          dated: harvardResponse.data.dated,
           personalThoughts: ''
         })
       }
