@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import ComingSoon from '../img/imageComingSoon.png'
 import Card from 'react-bootstrap/Card'
 import { Carousel } from 'react-bootstrap'
+// import Carousel from 'react-elastic-carousel'
 import Row from 'react-bootstrap/Row'
 
 export default function MyCollection(props){
@@ -95,40 +96,25 @@ export default function MyCollection(props){
     }
 
     return(
+      <div className='d-flex flex-column'>
       <div>
-        <div className='collection-index'>
-        <Carousel className='d-flex' style={{backgroundColor: 'blue', margin: '40px 0 0 260px', maxWidth: '500px'}}>  
+        <div className='d-flex justify-content-center collection-index'>
+        <Carousel className='d-flex' style={{backgroundColor: 'rgba(14, 69, 86, 0.5)', marginTop: '50px', maxWidth: '700px', padding: '25px 40px 25px 40px', borderRadius: '5px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'}}>  
         {myCollection.map((myObject, i)=>{
           return (
-            <Carousel.Item key={myObject._id}>
-            <Row style={{marginLeft: '35px'}}>
+            <Carousel.Item  key={myObject._id}>
+          
+            <Card className='border d-flex' style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', width: '8rem', margin: '10px'}}>
+            {/* <Link to={myObject._id} id={myObject._id}> */}
+              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+            {/* </Link> */}
+            <Card.Body>
+              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
+            </Card.Body>
+          </Card>
+        
 
-            
-            <Card className='border' style={{width: '8rem', margin: '10px'}}>
-            {/* <Link to={myObject._id} id={myObject._id}> */}
-              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
-            {/* </Link> */}
-            <Card.Body>
-              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
-            </Card.Body>
-          </Card>
-            <Card className='border' style={{width: '8rem', margin: '10px'}}>
-            {/* <Link to={myObject._id} id={myObject._id}> */}
-              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
-            {/* </Link> */}
-            <Card.Body>
-              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
-            </Card.Body>
-          </Card>
-            <Card className='border' style={{width: '8rem', margin: '10px'}}>
-            {/* <Link to={myObject._id} id={myObject._id}> */}
-              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
-            {/* </Link> */}
-            <Card.Body>
-              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
-            </Card.Body>
-          </Card>
-          </Row>
+
           </Carousel.Item>
 
           )
@@ -136,7 +122,10 @@ export default function MyCollection(props){
         })}
         <hr />
         </Carousel>
+        </div>
+        <div style={{margin: '40px 0'}}>
         <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
+      </div>
       </div>
         </div>
       
