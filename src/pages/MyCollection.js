@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Show from "./Show.js"
+import Show from "../components/Show.js"
 import axios from "axios"
 // import App from "../App"
 import {Link} from "react-router-dom"
-
+import ComingSoon from '../img/imageComingSoon.png'
+import Card from 'react-bootstrap/Card'
+import { Carousel } from 'react-bootstrap'
+// import Carousel from 'react-elastic-carousel'
+import Row from 'react-bootstrap/Row'
 
 export default function MyCollection(props){
 
@@ -21,6 +25,20 @@ export default function MyCollection(props){
   //     }
   //   })()
   // },[myShownPiece])
+
+  const [myCollection, setMyCollection] = useState([])
+
+  useEffect(() => {
+    // myCollection.length > 0 && 
+
+    (async () => {
+   
+      const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
+      await setMyCollection(response.data);
+      
+    })()
+    
+  }, [myCollection]);
 
   useEffect(()=>{
     // console.log('from uE', myShownPiece)
@@ -78,33 +96,37 @@ export default function MyCollection(props){
     }
 
     return(
-
+      <div className='d-flex flex-column'>
       <div>
-        <div className='collection-index'>
-          <h2>My Collection</h2>
-        {props.myCollection.map((myObject, i)=>{
+        <div className='d-flex justify-content-center collection-index'>
+        <Carousel className='d-flex' style={{backgroundColor: 'rgba(14, 69, 86, 0.5)', marginTop: '50px', maxWidth: '700px', padding: '25px 40px 25px 40px', borderRadius: '5px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)'}}>  
+        {myCollection.map((myObject, i)=>{
           return (
-            <div key={myObject._id}>
-              <h2>{myObject.title}</h2>
-              <Link to={myObject._id} id={myObject._id}>
-              {
-              myObject.img ?
-              <img src={myObject.img} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/> :
-              <img src={props.ComingSoon} onClick={handleClick} id={myObject._id} style={{maxWidth: '75px'}} alt={myObject.title}/>
-            }
-             
-              </Link>
-          <p style={{fontSize: '15px'}}>{myObject.description}</p>
-          {/* {console.log(myObject.title)} */}
-            </div>  
+            <Carousel.Item  key={myObject._id}>
+          
+            <Card className='border d-flex' style={{boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)', width: '8rem', margin: '10px'}}>
+            {/* <Link to={myObject._id} id={myObject._id}> */}
+              <Card.Img variant='top' src={myObject.img} onClick={handleClick} id={myObject._id} style={{width: '100%', height: '100%'}} alt={myObject.title} />
+            {/* </Link> */}
+            <Card.Body>
+              <Card.Title style={{fontSize: '0.75rem'}}>{myObject.title}</Card.Title>
+            </Card.Body>
+          </Card>
+        
+
+
+          </Carousel.Item>
+
           )
           
         })}
         <hr />
-        <Show myShownPiece={myShownPiece}handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={props.ComingSoon} handleDelete={handleDelete}/>
-
+        </Carousel>
+        </div>
+        <div style={{margin: '40px 0'}}>
+        <Show myShownPiece={myShownPiece} handleThoughtsSubmit={handleThoughtsSubmit} ComingSoon={ComingSoon} handleDelete={handleDelete}/>
       </div>
-      
+      </div>
         </div>
       
     )
