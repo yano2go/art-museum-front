@@ -33,7 +33,7 @@ export default function MyCollection(props){
 
     (async () => {
    
-      const response = await axios.get("https://harvard-art-museum-backend.herokuapp.com/api/");
+      const response = await axios.get("https://thepersonalartmuseum-back-end.herokuapp.com/api/");
       await setMyCollection(response.data);
       
     })()
@@ -50,7 +50,7 @@ export default function MyCollection(props){
     const handleClick = async event => {
       event.persist()
       try {
-        const response = await axios.get(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`)
+        const response = await axios.get(`https://thepersonalartmuseum-back-end.herokuapp.com/api/${event.target.id}`)
         // await console.log('from r.d', response.data)
 
         // await setMyShownPiece({...myShownPiece, ...response.data})
@@ -75,7 +75,7 @@ export default function MyCollection(props){
     const handleDelete = async event => {
       event.preventDefault()
       try {
-        await axios.delete(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`)
+        await axios.delete(`https://thepersonalartmuseum-back-end.herokuapp.com/api/${event.target.id}`)
         setMyShownPiece({})
       } catch (error) {
         console.error(error)
@@ -86,7 +86,7 @@ export default function MyCollection(props){
       event.preventDefault()
       // console.log(event.target.personalThoughts.value)
       // console.log('from submit', myShownPiece)
-      const response = await axios.put(`https://harvard-art-museum-backend.herokuapp.com/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
+      const response = await axios.put(`https://thepersonalartmuseum-back-end.herokuapp.com/api/${event.target.id}`, {personalThoughts: event.target.personalThoughts.value})
       await setMyShownPiece(response.data)
       function eraseText() {
         document.getElementById('thoughtForm').value = "";
