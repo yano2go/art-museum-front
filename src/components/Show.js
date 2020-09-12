@@ -12,6 +12,7 @@ export default function Show(props) {
 
      return (
           <div>
+               <h1>Click the picture to leave a comment!</h1>
                {Object.keys(props.myShownPiece).length > 0 &&
                     <>
                          
